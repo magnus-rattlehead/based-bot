@@ -29,14 +29,14 @@ export class ClearCommand extends BaseCommand {
         if (!ctx.member?.roles.cache.has(djRole.id) && !ctx.member?.permissions.has("MANAGE_GUILD")) return ctx.reply({ embeds: [createEmbed("error", "You don't have permission to clear.", true)] });
 
         const songs = [...ctx.guild!.queue!.songs.sortByIndex().values()];
-        var removed:number = 0;
-        for(song in songs) { 
+        let removed = 0;
+        for (const song: IQueueSong of songs) { 
             if (song.key === ((ctx.guild!.queue!.player!.state as AudioPlayerPlayingState).resource.metadata as IQueueSong).key) continue;
 
             ctx.guild?.queue?.songs.removeSong(song);
             removed++;
         }
 
-        void ctx.reply({ embeds: [createEmbed("success", `⏭ **|** ${i18n.__mf("commands.music.clear.clearMessage", { count: `${ removed }` })}`)] }).catch(e => this.client.logger.error("CLEAR_CMD_ERR:", e));
+        void ctx.reply({ embeds: [createEmbed("success", `⏭ **|** ${i18n.__mf("commands.music.clear.clearMessage", { count: `${removed}` })}`)] }).catch(e => this.client.logger.error("CLEAR_CMD_ERR:", e));
     }
 }

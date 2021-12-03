@@ -37,6 +37,6 @@ export class ClearCommand extends BaseCommand {
             removed++;
         }
 
-        void ctx.reply({ embeds: [createEmbed("success", `⏭ **|** ${i18n.__mf("commands.music.clear.clearMessage", { count: `${ removed }` })}`) }).catch(e => this.client.logger.error("CLEAR_CMD_ERR:", e));
+        void ctx.reply({ embeds: [createEmbed("success", `⏭ **|** ${i18n.__mf("commands.music.clear.clearMessage", { count: `${ removed }` })}`)] }).catch(e => this.client.logger.error("CLEAR_CMD_ERR:", e));
     }
 }

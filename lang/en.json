@@ -143,6 +143,10 @@
 		},
 		"music": {
 			"categoryName": "MUSIC",
+			"clear": {
+				"description": "Clears the queue",
+				"clearMessage": "Cleared **{count}** songs."
+			},
 			"lyrics": {
 				"description": "Show the lyrics from the song",
 				"slashDescription": "Song to search",
@@ -169,6 +173,10 @@
 			},
 			"queue": {
 				"description": "Show the queue list"
+			},
+			"remove": {
+				"description": "Given an index, remove song at that index from queue",
+				"removeMessage": "Removed **{song}**"
 			},
 			"repeat": {
 				"description": "Repeat current music or the queue",
@@ -210,10 +218,6 @@
 				"voteMessage": "{actual}/{required} voted to skip the current song",
 				"voteResultMessage": "{length}/{required} voted to skip the current song",
 				"skipMessage": "Skipped **{song}**"
-			},
-			"remove": {
-				"description": "Given an index, remove song at that index from queue",
-				"removeMessage": "Removed **{song}**"
 			},
 			"skipTo": {
 				"description": "Skip to specific position in the queue",

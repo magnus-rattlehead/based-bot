@@ -10,7 +10,7 @@ import { GuildMember } from "discord.js";
 export class RemoveCommand extends BaseCommand {
     public constructor(client: BaseCommand["client"]) {
         super(client, {
-            aliases: ["r, delete"],
+            aliases: ["r", "delete"],
             description: i18n.__("commands.music.remove.description"),
             name: "remove",
             slash: {

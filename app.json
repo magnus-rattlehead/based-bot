@@ -91,6 +91,11 @@
             "description": "What should be your bot's emoji for every failed sentence? | Example: ❌",
             "required": false,
             "value": "❌"
+        },
+        "AUTO_QUEUE_PLAYLIST_SONGS": {
+            "description": "Should your bot queue all songs in a playlist if the current song is part of one? | Example: no",
+            "required": false,
+            "value": "no"
         }
     },
     "repository": "",

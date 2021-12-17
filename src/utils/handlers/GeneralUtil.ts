@@ -9,8 +9,7 @@ import { createEmbed } from "../createEmbed";
 import { Disc } from "../../structures/Disc";
 import { youtube } from "./YouTubeUtil";
 import { chunk } from "../chunk";
-import { autoQueuePlayListSongs } from "../../config";
-import il8n from "../../config";
+import i18n from "../../config";
 import { AudioPlayerError, AudioPlayerPlayingState, AudioPlayerStatus, createAudioPlayer, createAudioResource, DiscordGatewayAdapterCreator, entersState, joinVoiceChannel, VoiceConnectionStatus } from "@discordjs/voice";
 import { Guild, Message, StageChannel, Util, VoiceChannel } from "discord.js";
 import { SearchResult, Video } from "youtubei";
@@ -63,8 +62,7 @@ export async function searchTrack(client: Disc, query: string, source: "soundclo
 
             result.type = "results";
         } else if (queryData.sourceType === "youtube") {
-            const queryDataType = queryData.type === "unknown" ? queryData.type : queryData.type === "track-list" && autoQueuePlayListSongs ? "playlist" : "track";
-            if (queryDataType === "track") {
+            if (queryData.type === "track") {
                 const track = await youtube.getVideo(url.toString());
 
                 if (track) {
@@ -76,7 +74,7 @@ export async function searchTrack(client: Disc, query: string, source: "soundclo
                         url: `https://youtube.com/watch?v=${track.id}`
                     }];
                 }
-            } else if (queryDataType === "playlist") {
+            } else if (queryData.type === "playlist") {
                 const playlist = await youtube.getPlaylist(url.toString());
 
                 if (playlist) {
@@ -219,7 +217,7 @@ export function checkQuery(string: string): QueryData {
         if (!/youtu\.be/g.exec(url.hostname) && url.pathname.startsWith("/playlist")) {
             result.type = "playlist";
         } else if ((/youtube/g.exec(url.hostname) && url.pathname.startsWith("/watch")) || (/youtu\.be/g.exec(url.hostname) && (url.pathname !== ""))) {
-            result.type = url.pathname.includes("?list=") ? "track-list" : "track";
+            result.type = "track";
         } else {
             result.type = "unknown";
         }
